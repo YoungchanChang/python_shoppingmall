@@ -6,18 +6,23 @@ from pydantic import BaseModel
 class Buyer(BaseModel):
     id: int
     money: int
-    items: list
+    products: list
 
 
 class Seller(BaseModel):
     id: int
     money: int
-    items: list
+    products: list
 
 
-class Item(BaseModel):
-    id: int
+class Product(BaseModel):
     name: str
     price: int
     seller: str
+    id: int = None
     desc: Optional[str] = None
+
+
+class Order(BaseModel):
+    product: Product
+    buyer: Buyer
