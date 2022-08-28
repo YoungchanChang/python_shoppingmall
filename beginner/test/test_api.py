@@ -1,10 +1,9 @@
 import requests
 
 
-def test_enroll_product():
+def test_enroll_product(set_url):
     """상품등록"""
     # given
-    api_host = "http://localhost:8000"
     payload = {
         "name": "1234",
         "price": 3,
@@ -13,47 +12,44 @@ def test_enroll_product():
     }
 
     # when
-    res = requests.post(url=f"{api_host}/products", json=payload)
+    res = requests.post(url=f"{set_url}/products", json=payload)
 
     # then
     assert res.status_code == 200
 
 
-def test_read_products():
+def test_read_products(set_url):
     """모든 상품 조회"""
     # given
-    api_host = "http://localhost:8000"
     payload = {
         "start": 1,
         "end": 5
     }
 
     # when
-    res = requests.get(url=f"{api_host}/products", params=payload)
+    res = requests.get(url=f"{set_url}/products", params=payload)
 
     # then
     assert res.status_code == 200
 
 
-def test_read_product_by_id():
+def test_read_product_by_id(set_url):
     """상품 세부 조회"""
     # given
-    api_host = "http://localhost:8000"
     payload = {
         "product_id": 1
     }
 
     # when
-    res = requests.get(url=f"{api_host}/products", params=payload)
+    res = requests.get(url=f"{set_url}/products", params=payload)
 
     # then
     assert res.status_code == 200
 
 
-def test_order_product():
+def test_order_product(set_url):
     """주문 요청"""
     # given
-    api_host = "http://localhost:8000"
     payload = {
           "product": {
             "name": "test",
@@ -72,7 +68,7 @@ def test_order_product():
         }
 
     # when
-    res = requests.post(url=f"{api_host}/order", json=payload)
+    res = requests.post(url=f"{set_url}/order", json=payload)
 
     # then
     assert res.status_code == 200
