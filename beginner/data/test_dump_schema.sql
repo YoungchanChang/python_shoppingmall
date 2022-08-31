@@ -5,7 +5,7 @@
 -- Dumped from database version 11.5 (Debian 11.5-3.pgdg90+1)
 -- Dumped by pg_dump version 11.5 (Debian 11.5-3.pgdg90+1)
 
--- Started on 2022-08-31 18:04:21 KST
+-- Started on 2022-08-31 22:16:31 KST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,6 +18,24 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+ALTER TABLE IF EXISTS ONLY public.buyer_product DROP CONSTRAINT IF EXISTS buyer_product_product_fkey;
+ALTER TABLE IF EXISTS ONLY public.buyer_product DROP CONSTRAINT IF EXISTS buyer_product_buyer_fkey;
+ALTER TABLE IF EXISTS ONLY public.buyer DROP CONSTRAINT IF EXISTS untitled_table_194_pkey;
+ALTER TABLE IF EXISTS ONLY public.seller DROP CONSTRAINT IF EXISTS seller_pkey1;
+ALTER TABLE IF EXISTS ONLY public.product DROP CONSTRAINT IF EXISTS product_pkey1;
+ALTER TABLE IF EXISTS ONLY public.buyer_product DROP CONSTRAINT IF EXISTS buyer_product_pkey;
+ALTER TABLE IF EXISTS public.seller ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE IF EXISTS public.product ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE IF EXISTS public.buyer_product ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE IF EXISTS public.buyer ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE IF EXISTS public.untitled_table_194_id_seq;
+DROP SEQUENCE IF EXISTS public.seller_id_seq1;
+DROP TABLE IF EXISTS public.seller;
+DROP SEQUENCE IF EXISTS public.product_id_seq1;
+DROP TABLE IF EXISTS public.product;
+DROP SEQUENCE IF EXISTS public.buyer_product_id_seq;
+DROP TABLE IF EXISTS public.buyer_product;
+DROP TABLE IF EXISTS public.buyer;
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -69,7 +87,7 @@ CREATE SEQUENCE public.buyer_product_id_seq
 ALTER TABLE public.buyer_product_id_seq OWNER TO test;
 
 --
--- TOC entry 2916 (class 0 OID 0)
+-- TOC entry 2908 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: buyer_product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: test
 --
@@ -112,7 +130,7 @@ CREATE SEQUENCE public.product_id_seq1
 ALTER TABLE public.product_id_seq1 OWNER TO test;
 
 --
--- TOC entry 2917 (class 0 OID 0)
+-- TOC entry 2909 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: product_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: test
 --
@@ -153,7 +171,7 @@ CREATE SEQUENCE public.seller_id_seq1
 ALTER TABLE public.seller_id_seq1 OWNER TO test;
 
 --
--- TOC entry 2918 (class 0 OID 0)
+-- TOC entry 2910 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: seller_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: test
 --
@@ -178,7 +196,7 @@ CREATE SEQUENCE public.untitled_table_194_id_seq
 ALTER TABLE public.untitled_table_194_id_seq OWNER TO test;
 
 --
--- TOC entry 2919 (class 0 OID 0)
+-- TOC entry 2911 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: untitled_table_194_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: test
 --
@@ -216,82 +234,6 @@ ALTER TABLE ONLY public.product ALTER COLUMN id SET DEFAULT nextval('public.prod
 --
 
 ALTER TABLE ONLY public.seller ALTER COLUMN id SET DEFAULT nextval('public.seller_id_seq1'::regclass);
-
-
---
--- TOC entry 2908 (class 0 OID 16492)
--- Dependencies: 201
--- Data for Name: buyer; Type: TABLE DATA; Schema: public; Owner: test
---
-
-COPY public.buyer (id, name, money, created_at, updated_at) FROM stdin;
-
-
-
---
--- TOC entry 2910 (class 0 OID 16506)
--- Dependencies: 203
--- Data for Name: buyer_product; Type: TABLE DATA; Schema: public; Owner: test
---
-
-COPY public.buyer_product (id, buyer, product) FROM stdin;
-
-
-
---
--- TOC entry 2906 (class 0 OID 16469)
--- Dependencies: 199
--- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: test
---
-
-COPY public.product (id, name, price, "desc", seller, created_at, updated_at) FROM stdin;
-
-
-
---
--- TOC entry 2904 (class 0 OID 16456)
--- Dependencies: 197
--- Data for Name: seller; Type: TABLE DATA; Schema: public; Owner: test
---
-
-COPY public.seller (id, name, money, created_at, update_at) FROM stdin;
-
-
-
---
--- TOC entry 2920 (class 0 OID 0)
--- Dependencies: 202
--- Name: buyer_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
---
-
-SELECT pg_catalog.setval('public.buyer_product_id_seq', 1, false);
-
-
---
--- TOC entry 2921 (class 0 OID 0)
--- Dependencies: 198
--- Name: product_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: test
---
-
-SELECT pg_catalog.setval('public.product_id_seq1', 1, false);
-
-
---
--- TOC entry 2922 (class 0 OID 0)
--- Dependencies: 196
--- Name: seller_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: test
---
-
-SELECT pg_catalog.setval('public.seller_id_seq1', 1, false);
-
-
---
--- TOC entry 2923 (class 0 OID 0)
--- Dependencies: 200
--- Name: untitled_table_194_id_seq; Type: SEQUENCE SET; Schema: public; Owner: test
---
-
-SELECT pg_catalog.setval('public.untitled_table_194_id_seq', 1, false);
 
 
 --
@@ -348,7 +290,7 @@ ALTER TABLE ONLY public.buyer_product
     ADD CONSTRAINT buyer_product_product_fkey FOREIGN KEY (product) REFERENCES public.product(id);
 
 
--- Completed on 2022-08-31 18:04:21 KST
+-- Completed on 2022-08-31 22:16:31 KST
 
 --
 -- PostgreSQL database dump complete
