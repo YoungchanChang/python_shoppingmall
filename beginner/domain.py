@@ -5,21 +5,21 @@ from pydantic import BaseModel
 
 class Buyer(BaseModel):
     id: int
+    name: str
     money: int
-    products: list
 
 
 class Seller(BaseModel):
     id: int
+    name: str
     money: int
-    products: list
 
 
 class Product(BaseModel):
+    id: int
     name: str
     price: int
-    seller: str
-    id: int = None
+    seller: int
     desc: Optional[str] = None
 
 
