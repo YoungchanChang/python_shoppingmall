@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  postgres-py-mall:
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+      - TZ=Asia/Seoul
+      - POSTGRES_PASSWORD=test1234
+      - POSTGRES_DB=test
+      - POSTGRES_USER=test
+    image: "postgres:11.5"
+    ports:
+      - "6432:5432"
