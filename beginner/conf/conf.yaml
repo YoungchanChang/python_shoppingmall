@@ -1,0 +1,8 @@
+test:
+  TEST_DB:
+    HOST: 'localhost'
+    READER_HOST: 'localhost'
+    PORT: 6432
+    NAME: 'test'
+    USERNAME: 'test'
+    PASSWORD: 'test1234'
